@@ -11,7 +11,7 @@ html, body {
   padding: 0;
   width: 100%;
   min-height: 100%;
-  background: #1F3A5F;
+  background: #0A0A0A;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -40,7 +40,7 @@ button:focus-visible, select:focus-visible {
   padding: 16px 12px 20px;
   display: flex;
   flex-direction: column;
-  background: #1F3A5F;
+  background: #0A0A0A;
   color: #DCE5EE;
   flex-shrink: 0;
   overflow-y: auto;
