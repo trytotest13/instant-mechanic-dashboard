@@ -1060,7 +1060,7 @@ export default function DashboardV2() {
       {/* ── Sidebar (desktop) ── */}
       <aside className="v2-sidebar">
         <div className="v2-brand">
-          <div className="v2-brand-mark">IM</div>
+          <img src="/logo.jpg" alt="Instant Mechanic Logo" className="v2-brand-mark" style={{ width: 36, height: 36, borderRadius: 9, objectFit: "cover" }} />
           <div>
             <strong>Instant Mechanic</strong>
             <span>Operations</span>
