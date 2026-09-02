@@ -244,6 +244,8 @@ function SortArrow({ active, dir }: { active: boolean; dir: SortDir }) {
 const PAGE_SIZE = 10;
 type BookingSortField = "bookingNumber" | "customer" | "vehicle" | "service" | "amount" | "scheduledAt";
 
+type DateFilterType = "all" | "today" | "date";
+
 function BookingsPage({
   allBookings,
   isTodayFilter,
@@ -257,9 +259,17 @@ function BookingsPage({
 }) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const [dateMode, setDateMode] = useState<DateFilterType>(isTodayFilter ? "today" : "all");
+  const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().slice(0, 10));
   const [sortField, setSortField] = useState<BookingSortField>("scheduledAt");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    if (isTodayFilter) {
+      setDateMode("today");
+    }
+  }, [isTodayFilter]);
 
   function handleSort(field: BookingSortField) {
     if (sortField === field) {
@@ -275,6 +285,7 @@ function BookingsPage({
   function handleStatus(v: string) { setStatusFilter(v); setPage(1); }
 
   const filtered = useMemo(() => {
+    const now = new Date();
     return allBookings
       .filter(b => {
         const matchesSearch =
@@ -283,7 +294,27 @@ function BookingsPage({
           b.customer.toLowerCase().includes(search.toLowerCase()) ||
           b.vehicle.toLowerCase().includes(search.toLowerCase());
         const matchesStatus = !statusFilter || b.status === statusFilter;
-        return matchesSearch && matchesStatus;
+
+        let matchesDate = true;
+        if (dateMode === "today") {
+          if (!b.scheduledAt) matchesDate = false;
+          else {
+            const d = new Date(b.scheduledAt);
+            matchesDate =
+              d.getFullYear() === now.getFullYear() &&
+              d.getMonth() === now.getMonth() &&
+              d.getDate() === now.getDate();
+          }
+        } else if (dateMode === "date") {
+          if (!b.scheduledAt || !selectedDate) matchesDate = true;
+          else {
+            const d = new Date(b.scheduledAt);
+            const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+            matchesDate = dateStr === selectedDate;
+          }
+        }
+
+        return matchesSearch && matchesStatus && matchesDate;
       })
       .sort((a, b) => {
         let av: string | number = (a as Record<string, unknown>)[sortField] as string | number ?? "";
@@ -294,7 +325,7 @@ function BookingsPage({
         if (av > bv) return sortDir === "asc" ? 1 : -1;
         return 0;
       });
-  }, [allBookings, search, statusFilter, sortField, sortDir]);
+  }, [allBookings, search, statusFilter, dateMode, selectedDate, sortField, sortDir]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -310,22 +341,47 @@ function BookingsPage({
 
   return (
     <section className="v2-content">
-      <div className="v2-section-head">
+      <div className="v2-section-head" style={{ flexWrap: "wrap", gap: 12 }}>
         <div>
-          <h2>{isTodayFilter ? "Today's Bookings" : "All Bookings"}</h2>
-          <span>{filtered.length} booking{filtered.length !== 1 ? "s" : ""} found {isTodayFilter ? "(scheduled for today)" : ""}</span>
+          <h2>
+            {dateMode === "today"
+              ? "Today's Bookings"
+              : dateMode === "date" && selectedDate
+              ? `Bookings for ${new Date(selectedDate + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}`
+              : "All Bookings"}
+          </h2>
+          <span>{filtered.length} booking{filtered.length !== 1 ? "s" : ""} found</span>
         </div>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <button
-            className={`v2-secondary small${isTodayFilter ? " active" : ""}`}
-            onClick={onToggleToday}
-            aria-pressed={isTodayFilter}
-            title={isTodayFilter ? "Show all bookings" : "Filter by today's bookings"}
-          >
-            <Icon name="calendar" />
-            {isTodayFilter ? "✓ Today" : "Today"}
-          </button>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          <div className="v2-date-filter-wrap">
+            <button
+              className={`v2-date-btn${dateMode === "all" ? " active" : ""}`}
+              onClick={() => { setDateMode("all"); if (onClearToday) onClearToday(); setPage(1); }}
+            >
+              All
+            </button>
+            <button
+              className={`v2-date-btn${dateMode === "today" ? " active" : ""}`}
+              onClick={() => { setDateMode("today"); setPage(1); }}
+            >
+              <Icon name="calendar" /> Today
+            </button>
+            <button
+              className={`v2-date-btn${dateMode === "date" ? " active" : ""}`}
+              onClick={() => { setDateMode("date"); if (onClearToday) onClearToday(); setPage(1); }}
+            >
+              By Date
+            </button>
+          </div>
 
+          {dateMode === "date" && (
+            <input
+              type="date"
+              className="v2-date-picker-input"
+              value={selectedDate}
+              onChange={e => { setSelectedDate(e.target.value); setPage(1); }}
+            />
+          )}
         </div>
       </div>
       <div className="v2-panel v2-bookings-panel" style={{ marginTop: 0 }}>
