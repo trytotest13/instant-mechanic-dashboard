@@ -6,7 +6,7 @@ import {
   ResponsiveContainer, Tooltip, XAxis, YAxis
 } from "recharts";
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api";
+const API = process.env.NEXT_PUBLIC_API_URL ?? "https://instant-mechanic-backend.onrender.com/api";
 
 type Page = "overview" | "bookings" | "mechanics" | "customers" | "analytics";
 
