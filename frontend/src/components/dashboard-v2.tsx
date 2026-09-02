@@ -459,7 +459,7 @@ function MechanicsPage() {
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                       <img
-                        src={`/avatars/mechanic-${((m.id - 1) % 4) + 1}.jpg`}
+                        src={`https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=fef3c7&color=d97706&size=40&bold=true&rounded=true`}
                         alt={m.name}
                         className="v2-avatar-img"
                       />
@@ -487,22 +487,9 @@ function MechanicsPage() {
   );
 }
 
-// ─── Customer Avatar Helper ──────────────────────────────────────────────────
-const CUSTOMER_AVATARS: Record<string, string> = {
-  "Rahul Sharma": "/avatars/customer-2.jpg",
-  "Priya Singh":  "/avatars/customer-1.jpg",
-  "Amit Kumar":   "/avatars/customer-4.jpg",
-  "Deepa Nair":   "/avatars/customer-3.jpg",
-  "Vikram Patel": "/avatars/customer-2.jpg",
-  "Sunita Verma": "/avatars/customer-1.jpg",
-  "Rohan Mehta":  "/avatars/customer-4.jpg",
-  "Ananya Iyer":  "/avatars/customer-3.jpg",
-  "Kiran Bose":   "/avatars/customer-2.jpg",
-  "Meena Joshi":  "/avatars/customer-1.jpg",
-};
-
-function getCustomerAvatar(name: string, id: number) {
-  return CUSTOMER_AVATARS[name] ?? ((id % 2 === 0) ? "/avatars/customer-2.jpg" : "/avatars/customer-1.jpg");
+function getCustomerAvatar(name: string, _id: number) {
+  const encoded = encodeURIComponent(name);
+  return `https://ui-avatars.com/api/?name=${encoded}&background=e0e7ff&color=4f46e5&size=40&bold=true&rounded=true`;
 }
 
 // ─── Page: Customers ─────────────────────────────────────────────────────────
