@@ -10,7 +10,11 @@ import servicesRouter from './routes/services';
 
 const app = express();
 
-app.use(cors({ origin: process.env.CORS_ORIGIN ?? 'http://localhost:3000' }));
+const corsOrigin = process.env.CORS_ORIGIN;
+const corsOptions = !corsOrigin || corsOrigin === '*'
+  ? { origin: true }
+  : { origin: corsOrigin };
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Health check
