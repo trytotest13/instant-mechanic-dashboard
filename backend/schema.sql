@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS customers(id SERIAL PRIMARY KEY,name VARCHAR(100) NOT NULL,phone VARCHAR(20),email VARCHAR(150),created_at TIMESTAMP DEFAULT NOW());
+CREATE TABLE IF NOT EXISTS mechanics(id SERIAL PRIMARY KEY,name VARCHAR(100) NOT NULL,status VARCHAR(20) DEFAULT 'available',created_at TIMESTAMP DEFAULT NOW());
+CREATE TABLE IF NOT EXISTS services(id SERIAL PRIMARY KEY,name VARCHAR(100) NOT NULL,category VARCHAR(50) NOT NULL,base_price NUMERIC(10,2) NOT NULL);
+CREATE TABLE IF NOT EXISTS bookings(id SERIAL PRIMARY KEY,customer_id INT REFERENCES customers(id),mechanic_id INT REFERENCES mechanics(id),service_id INT REFERENCES services(id),vehicle VARCHAR(100),status VARCHAR(30) NOT NULL DEFAULT 'pending',amount NUMERIC(10,2) NOT NULL,scheduled_at TIMESTAMP NOT NULL,created_at TIMESTAMP DEFAULT NOW(),updated_at TIMESTAMP DEFAULT NOW());
+CREATE INDEX IF NOT EXISTS idx_bookings_status ON bookings(status); CREATE INDEX IF NOT EXISTS idx_bookings_scheduled_at ON bookings(scheduled_at);
