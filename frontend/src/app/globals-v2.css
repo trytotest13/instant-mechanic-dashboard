@@ -15,7 +15,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Global cursor & focus polish ── */
+/* â”€â”€ Global cursor & focus polish â”€â”€ */
 button, select { cursor: pointer; }
 input { cursor: text; }
 button:focus-visible, select:focus-visible {
@@ -31,7 +31,7 @@ button:focus-visible, select:focus-visible {
   font-family: Inter, system-ui, sans-serif;
 }
 
-/* ── Sidebar ── */
+/* â”€â”€ Sidebar â”€â”€ */
 .v2-sidebar {
   width: 220px;
   height: 100vh;
@@ -76,16 +76,85 @@ button:focus-visible, select:focus-visible {
 .v2-icon { width:16px;height:16px;flex:0 0 16px;transition: transform .15s ease; }
 .v2-nav button:hover .v2-icon { transform: scale(1.1); }
 
-.v2-sidebar-bottom { margin-top:auto;padding-top:16px;padding-bottom:6px; }
+.v2-sidebar-bottom { margin-top:auto;padding-top:18px;padding-bottom:4px;border-top:1px solid rgba(255,255,255,.08); }
 .v2-user {
-  display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);min-width:0;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 7px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid transparent;
+  min-width: 0;
   transition: background .18s ease, border-color .18s ease;
 }
-.v2-user:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.15); }
-.v2-user > div { min-width:0; }
-.v2-user strong { display:block;color:#fff;font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-.v2-user small { display:block;color:#9EB1C3;font-size:10px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.v2-user:hover {
+  background: #171717;
+  border-color: #2E2E2E;
+}
+.v2-user-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+.v2-user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #303030;
+  box-shadow: none;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.v2-user:hover .v2-user-avatar {
+  transform: none;
+  border-color: #FF6B35;
+}
+.v2-user-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #30C48D;
+  border: 2px solid #0A0A0A;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-shadow: none;
+}
+.v2-user-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.v2-user-info strong {
+  display: block;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+.v2-user-role {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #A9B4BE;
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+.v2-user-role i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #30C48D;
+}
 .v2-avatar { width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#DDE7F0;color:#1F3A5F;font-size:9px;font-weight:700;flex-shrink:0; }
 .v2-avatar-img {
   width:32px;height:32px;border-radius:50%;object-fit:cover;border:1.5px solid #E3E6EA;
@@ -94,7 +163,7 @@ button:focus-visible, select:focus-visible {
 .v2-user:hover .v2-avatar-img { transform: scale(1.05); }
 .v2-user .v2-avatar-img { width:32px;height:32px;border:1.5px solid rgba(255,255,255,.25); }
 
-/* ── Main ── */
+/* â”€â”€ Main â”€â”€ */
 .v2-main { min-width:0;flex:1; }
 .v2-header {
   position:sticky;top:0;z-index:40;min-height:60px;padding:12px 30px;
@@ -107,7 +176,7 @@ button:focus-visible, select:focus-visible {
 .v2-subtitle { margin:2px 0 0;color:#69727D;font-size:11px; }
 .v2-header-actions { display:flex;align-items:center;gap:16px; }
 
-/* ── Buttons ── */
+/* â”€â”€ Buttons â”€â”€ */
 .v2-icon-button,.v2-secondary,.v2-primary,.v2-select { border-radius:12px;font-size:14px;font-weight:700; }
 
 .v2-icon-button {
@@ -146,7 +215,7 @@ button:focus-visible, select:focus-visible {
 .v2-filter-chip button { border:0;background:transparent;color:#87909A;cursor:pointer;font-weight:700;font-size:12px;transition:color .15s ease; }
 .v2-filter-chip button:hover { color:#1B2027; }
 
-/* ── Page content fade-in on tab switch ── */
+/* â”€â”€ Page content fade-in on tab switch â”€â”€ */
 .v2-content {
   padding:20px 30px 16px;
   animation: v2-page-in .22s cubic-bezier(.4,0,.2,1);
@@ -162,7 +231,7 @@ button:focus-visible, select:focus-visible {
 .v2-section-head span,.v2-panel-head span { display:block;margin-top:3px;color:#6B7280;font-size:12px; }
 .v2-updated { padding-top:2px!important;color:#2F9E44!important;font-weight:500; }
 
-/* ── Metric cards ── */
+/* â”€â”€ Metric cards â”€â”€ */
 .v2-metrics { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-bottom:17px; }
 .v2-metric,.v2-skeleton { min-height:120px;border:1px solid #E3E6EA;border-radius:8px;background:#fff; }
 .v2-metric {
@@ -193,7 +262,7 @@ button:focus-visible, select:focus-visible {
 .v2-skeleton { animation:v2-pulse 1.4s infinite ease-in-out;background:linear-gradient(90deg,#f3f4f6,#e9ebee,#f3f4f6);background-size:300% 100%; }
 @keyframes v2-pulse { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
 
-/* ── Panels & charts ── */
+/* â”€â”€ Panels & charts â”€â”€ */
 .v2-chart-grid { display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,.8fr);gap:14px;margin-bottom:14px; }
 .v2-lower-grid { display:grid;grid-template-columns:minmax(300px,.7fr) minmax(0,1.5fr);gap:24px; }
 .v2-panel {
@@ -208,7 +277,7 @@ button:focus-visible, select:focus-visible {
 }
 .v2-select:hover { border-color:#B5BFCC; }
 
-/* ── Donut ── */
+/* â”€â”€ Donut â”€â”€ */
 .v2-donut-wrap { position:relative;height:205px; }
 .v2-donut-center { position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none; }
 .v2-donut-center strong { font:600 25px "Space Grotesk",sans-serif; }
@@ -246,7 +315,7 @@ button:focus-visible, select:focus-visible {
 }
 .v2-toolbar select:focus { border-color:#3B82F6; box-shadow: 0 0 0 3px rgba(59,130,246,.12); }
 
-/* ── Date Filter Bar ── */
+/* â”€â”€ Date Filter Bar â”€â”€ */
 .v2-date-filter-wrap {
   display: flex;
   align-items: center;
@@ -297,7 +366,7 @@ button:focus-visible, select:focus-visible {
   box-shadow: 0 0 0 3px rgba(59,130,246,.12);
 }
 
-/* ── Table ── */
+/* â”€â”€ Table â”€â”€ */
 .v2-table-wrap { overflow:auto; }
 .v2-table { width:100%;min-width:650px;border-collapse:collapse;font-size:14px; }
 .v2-table th { padding:12px 14px;text-align:left;color:#6B7280;background:#FAFBFC;border-bottom:1px solid #E3E6EA;font-size:11px;font-weight:700;letter-spacing:.05em;vertical-align:middle; }
@@ -307,7 +376,7 @@ button:focus-visible, select:focus-visible {
 .v2-table tbody tr:hover td { background:#F4F7FB; }
 .v2-empty { padding:28px!important;text-align:center;color:#89939E!important;font-size:13px; }
 
-/* ── Badges ── */
+/* â”€â”€ Badges â”€â”€ */
 .v2-badge {
   display:inline-flex;padding:4px 9px;border-radius:5px;font-size:11px;font-weight:700;
   border:1px solid transparent;
@@ -323,7 +392,7 @@ button:focus-visible, select:focus-visible {
 .v2-error { margin:14px 30px 0;padding:10px 12px;display:flex;justify-content:space-between;border:1px solid #F1B5B5;border-radius:6px;background:#FFF5F5;color:#A52626;font-size:11px; }
 .v2-error button { border:0;background:transparent;color:#A52626;font-weight:700; }
 
-/* ── Active states ── */
+/* â”€â”€ Active states â”€â”€ */
 .v2-icon-button.active { background:#1F3A5F;border-color:#1F3A5F;color:#fff; }
 .v2-secondary.active { background:#1F3A5F;border-color:#1F3A5F;color:#fff; }
 .v2-icon-button { position:relative; }
@@ -337,7 +406,7 @@ button:focus-visible, select:focus-visible {
   50%      { transform:scale(1.4); opacity:.7; }
 }
 
-/* ── Notifications panel ── */
+/* â”€â”€ Notifications panel â”€â”€ */
 .v2-notif-backdrop {
   position:fixed;inset:0;z-index:150;background:rgba(16,26,40,.25);
   animation:v2-fade-in .2s cubic-bezier(.4,0,.2,1);
@@ -375,7 +444,7 @@ button:focus-visible, select:focus-visible {
 .v2-notif-item time { font-size:11px;color:#A0ABB6;white-space:nowrap;padding-top:2px; }
 @media (max-width:400px) { .v2-notif-panel { width:100%; } }
 
-/* ── Modal ── */
+/* â”€â”€ Modal â”€â”€ */
 .v2-modal-backdrop {
   position:fixed;inset:0;z-index:200;
   display:flex;align-items:center;justify-content:center;padding:20px;
@@ -432,13 +501,13 @@ button:focus-visible, select:focus-visible {
 .v2-modal-success span { font-size:11px;color:#69727D; }
 @media (max-width:500px) { .v2-modal-grid { grid-template-columns:1fr; } }
 
-/* ── Sort arrows ── */
+/* â”€â”€ Sort arrows â”€â”€ */
 .v2-sortable { cursor:pointer;user-select:none;transition:color .15s ease; }
 .v2-sortable:hover { color:#1B2027; }
 .v2-sort-arrow { margin-left:4px;font-size:9px;opacity:.35;transition:opacity .15s ease; }
 .v2-sort-arrow.active { opacity:1;color:#1F3A5F; }
 
-/* ── Pagination ── */
+/* â”€â”€ Pagination â”€â”€ */
 .v2-pagination { display:flex;align-items:center;justify-content:space-between;padding:12px 0 2px;flex-wrap:wrap;gap:8px; }
 .v2-pagination-info { color:#8A939D;font-size:10px; }
 .v2-pagination-controls { display:flex;align-items:center;gap:3px; }
@@ -452,7 +521,7 @@ button:focus-visible, select:focus-visible {
 .v2-pagination-controls button.active { background:#1F3A5F;border-color:#1F3A5F;color:#fff;font-weight:700; }
 .v2-pagination-controls button:disabled { opacity:.35;cursor:not-allowed; }
 
-/* ── Mobile bottom nav ── */
+/* â”€â”€ Mobile bottom nav â”€â”€ */
 .v2-mobile-nav { display:none; }
 
 @media (max-width:900px) {
@@ -462,7 +531,7 @@ button:focus-visible, select:focus-visible {
 @media (max-width:760px) {
   .v2-sidebar { width:68px;padding:18px 8px; }
   .v2-brand { justify-content:center;padding-left:0;padding-right:0; }
-  .v2-brand > div:last-child,.v2-nav-label,.v2-nav button em,.v2-live-box div,.v2-user div:last-child { display:none; }
+  .v2-brand > div:last-child,.v2-nav-label,.v2-nav button em,.v2-live-box div,.v2-user div:last-child,.v2-user-info { display:none; }
   .v2-nav button { justify-content:center;padding:0; }
   .v2-header { padding:18px;align-items:flex-start; }
   .v2-header-actions .v2-secondary { display:none; }

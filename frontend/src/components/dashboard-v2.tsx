@@ -229,7 +229,7 @@ function Icon({ name }: { name: IconName }) {
   }
 }
 
-// ─── Transparent Brand Logo ──────────────────────────────────────────────────
+// â”€â”€â”€ Transparent Brand Logo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function BrandLogo() {
   return (
     <svg viewBox="0 0 340 92" style={{ width: "100%", height: "auto", maxHeight: 44, display: "block" }}>
@@ -291,18 +291,18 @@ function BrandLogo() {
   );
 }
 
-// ─── Sort icon ────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Sort icon â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 type SortDir = "asc" | "desc";
 
 function SortArrow({ active, dir }: { active: boolean; dir: SortDir }) {
   return (
     <span className={`v2-sort-arrow${active ? " active" : ""}`}>
-      {active ? (dir === "asc" ? "↑" : "↓") : "↕"}
+      {active ? (dir === "asc" ? "â†‘" : "â†“") : "â†•"}
     </span>
   );
 }
 
-// ─── Page: Bookings ──────────────────────────────────────────────────────────
+// â”€â”€â”€ Page: Bookings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const PAGE_SIZE = 10;
 type BookingSortField = "bookingNumber" | "customer" | "vehicle" | "service" | "amount" | "scheduledAt";
 
@@ -505,7 +505,7 @@ function BookingsPage({
                       {statusText[b.status] ?? b.status}
                     </span>
                   </td>
-                  <td><strong>₹{b.amount.toLocaleString("en-IN")}</strong></td>
+                  <td><strong>â‚¹{b.amount.toLocaleString("en-IN")}</strong></td>
                   <td><small>{new Date(b.scheduledAt).toLocaleDateString("en-IN")}</small></td>
                 </tr>
               ))}
@@ -519,8 +519,8 @@ function BookingsPage({
               {(safePage - 1) * PAGE_SIZE + 1} to {Math.min(safePage * PAGE_SIZE, filtered.length)} of {filtered.length}
             </span>
             <div className="v2-pagination-controls">
-              <button onClick={() => setPage(1)} disabled={safePage === 1} aria-label="First page">«</button>
-              <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={safePage === 1} aria-label="Previous page">‹</button>
+              <button onClick={() => setPage(1)} disabled={safePage === 1} aria-label="First page">Â«</button>
+              <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={safePage === 1} aria-label="Previous page">â€¹</button>
               {pageNumbers().map(n => (
                 <button
                   key={n}
@@ -531,8 +531,8 @@ function BookingsPage({
                   {n}
                 </button>
               ))}
-              <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={safePage === totalPages} aria-label="Next page">›</button>
-              <button onClick={() => setPage(totalPages)} disabled={safePage === totalPages} aria-label="Last page">»</button>
+              <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={safePage === totalPages} aria-label="Next page">â€º</button>
+              <button onClick={() => setPage(totalPages)} disabled={safePage === totalPages} aria-label="Last page">Â»</button>
             </div>
           </div>
         )}
@@ -541,7 +541,7 @@ function BookingsPage({
   );
 }
 
-// ─── Page: Mechanics ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Page: Mechanics â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function MechanicsPage() {
   const [mechanics, setMechanics] = useState<Mechanic[]>([]);
   const [loading, setLoading] = useState(true);
@@ -605,7 +605,7 @@ function MechanicsPage() {
   );
 }
 
-// ─── Customer Avatar Helper ──────────────────────────────────────────────────
+// â”€â”€â”€ Customer Avatar Helper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const CUSTOMER_AVATARS: Record<string, string> = {
   "Rahul Sharma": "/avatars/customer-2.jpg",
   "Priya Singh":  "/avatars/customer-1.jpg",
@@ -623,7 +623,7 @@ function getCustomerAvatar(name: string, id: number) {
   return CUSTOMER_AVATARS[name] ?? ((id % 2 === 0) ? "/avatars/customer-2.jpg" : "/avatars/customer-1.jpg");
 }
 
-// ─── Page: Customers ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Page: Customers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
@@ -702,7 +702,7 @@ function CustomersPage() {
   );
 }
 
-// ─── Page: Analytics ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Page: Analytics â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function AnalyticsPage({ analytics }: { analytics: AnalyticsData | null }) {
   const statusData = analytics?.statusBreakdown ?? [];
   const categoryData = analytics?.categoryBreakdown ?? [];
@@ -722,7 +722,7 @@ function AnalyticsPage({ analytics }: { analytics: AnalyticsData | null }) {
       <div className="v2-chart-grid">
         <section className="v2-panel v2-wide">
           <div className="v2-panel-head">
-            <div><h2>Revenue over time</h2><span>Completed bookings revenue — last 14 days</span></div>
+            <div><h2>Revenue over time</h2><span>Completed bookings revenue â€” last 14 days</span></div>
           </div>
           <div className="v2-chart">
             <ResponsiveContainer width="100%" height="100%">
@@ -797,7 +797,7 @@ function AnalyticsPage({ analytics }: { analytics: AnalyticsData | null }) {
   );
 }
 
-// ─── New Booking Modal ───────────────────────────────────────────────────────
+// â”€â”€â”€ New Booking Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 type ServiceOption = { id: number; name: string; category: string; base_price: number };
 type CustomerOption = { id: number; name: string };
 type MechanicOption = { id: number; name: string; status: string };
@@ -962,7 +962,7 @@ function NewBookingModal({ onClose, onSuccess }: { onClose: () => void; onSucces
   );
 }
 
-// ─── Notifications Panel ────────────────────────────────────────────────────
+// â”€â”€â”€ Notifications Panel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function NotificationsPanel({ bookings, onClose }: { bookings: Booking[]; onClose: () => void }) {
   const todayStr = new Date().toDateString();
 
@@ -1049,7 +1049,7 @@ function NotificationsPanel({ bookings, onClose }: { bookings: Booking[]; onClos
   );
 }
 
-// ─── Main dashboard ───────────────────────────────────────────────────────────
+// â”€â”€â”€ Main dashboard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export default function DashboardV2() {
   const [page, setPage] = useState<Page>("overview");
   const [overview, setOverview] = useState<OverviewData | null>(null);
@@ -1175,7 +1175,7 @@ export default function DashboardV2() {
 
   return (
     <div className="v2-shell">
-      {/* ── Sidebar (desktop) ── */}
+      {/* â”€â”€ Sidebar (desktop) â”€â”€ */}
       <aside className="v2-sidebar">
         <div className="v2-brand" style={{ padding: "8px 0 16px", borderBottom: "1px solid rgba(255,255,255,.1)" }}>
           <BrandLogo />
@@ -1198,13 +1198,19 @@ export default function DashboardV2() {
 
         <div className="v2-sidebar-bottom">
           <div className="v2-user">
-            <img src="/avatars/admin.jpg" alt="Operations Admin" className="v2-avatar-img" />
-            <div><strong>Operations Admin</strong><small>Administrator</small></div>
+            <div className="v2-user-avatar-wrap">
+              <img className="v2-user-avatar" src="/avatars/admin.jpg" alt="Operations Admin" />
+              <span className="v2-user-status" title="Online" />
+            </div>
+            <div className="v2-user-info">
+              <strong>Operations Admin</strong>
+              <span className="v2-user-role"><i />Online · Administrator</span>
+            </div>
           </div>
         </div>
       </aside>
 
-      {/* ── Main content ── */}
+      {/* â”€â”€ Main content â”€â”€ */}
       <main className="v2-main">
         <header className="v2-header">
           <div>
@@ -1376,7 +1382,7 @@ export default function DashboardV2() {
                               <td><small>{b.vehicle}</small></td>
                               <td>{b.service}</td>
                               <td><span className={`v2-badge ${statusTone[b.status] ?? ""}`}>{statusText[b.status] ?? b.status}</span></td>
-                              <td><strong>₹{b.amount.toLocaleString("en-IN")}</strong></td>
+                              <td><strong>â‚¹{b.amount.toLocaleString("en-IN")}</strong></td>
                             </tr>
                           ))}
                         </tbody>
@@ -1395,7 +1401,7 @@ export default function DashboardV2() {
         {page === "analytics" && <AnalyticsPage analytics={analytics} />}
       </main>
 
-      {/* ── Mobile bottom nav (shown at ≤520px) ── */}
+      {/* â”€â”€ Mobile bottom nav (shown at â‰¤520px) â”€â”€ */}
       <nav className="v2-mobile-nav" aria-label="Mobile navigation">
         {navItems.map(item => (
           <button
@@ -1413,12 +1419,12 @@ export default function DashboardV2() {
         ))}
       </nav>
 
-      {/* ── Notifications Panel ── */}
+      {/* â”€â”€ Notifications Panel â”€â”€ */}
       {showNotifications && (
         <NotificationsPanel bookings={bookings} onClose={() => setShowNotifications(false)} />
       )}
 
-      {/* ── New Booking Modal ── */}
+      {/* â”€â”€ New Booking Modal â”€â”€ */}
       {showModal && (
         <NewBookingModal
           onClose={() => setShowModal(false)}
