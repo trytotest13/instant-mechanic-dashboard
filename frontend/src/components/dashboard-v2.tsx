@@ -229,6 +229,68 @@ function Icon({ name }: { name: IconName }) {
   }
 }
 
+// ─── Transparent Brand Logo ──────────────────────────────────────────────────
+function BrandLogo() {
+  return (
+    <svg viewBox="0 0 340 92" style={{ width: "100%", height: "auto", maxHeight: 44, display: "block" }}>
+      <defs>
+        <linearGradient id="wrenchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FF7A00" />
+          <stop offset="100%" stopColor="#FF4500" />
+        </linearGradient>
+      </defs>
+
+      {/* Outer Gear */}
+      <g fill="none" stroke="#FFFFFF" opacity="0.95">
+        <circle cx="48" cy="46" r="36" strokeWidth="6" />
+        {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+          <rect
+            key={i}
+            x="44"
+            y="4"
+            width="8"
+            height="8"
+            rx="2"
+            fill="#FFFFFF"
+            transform={`rotate(${angle} 48 46)`}
+          />
+        ))}
+      </g>
+
+      {/* Car Silhouette inside Gear */}
+      <g fill="#FFFFFF">
+        <path d="M 32 40 Q 40 29 48 29 Q 56 29 64 40 Z" opacity="0.95" />
+        <path d="M 24 41 C 24 38 27 37 30 37 L 66 37 C 69 37 72 38 72 41 L 74 50 C 74 53 72 54 70 54 L 26 54 C 24 54 22 53 22 50 Z" />
+        <ellipse cx="29" cy="45" rx="3.5" ry="2" fill="#1F3A5F" />
+        <ellipse cx="67" cy="45" rx="3.5" ry="2" fill="#1F3A5F" />
+        <line x1="41" y1="44" x2="55" y2="44" stroke="#1F3A5F" strokeWidth="1.5" />
+        <line x1="43" y1="48" x2="53" y2="48" stroke="#1F3A5F" strokeWidth="1.5" />
+      </g>
+
+      {/* Orange Wrench overlaid diagonally */}
+      <g transform="translate(14, 18) rotate(-26 48 46)">
+        <path
+          d="M 50 36 L 74 60 C 76 62 76 65 74 67 L 71 70 C 69 72 66 72 64 70 L 40 46 C 36 48 30 47 26 43 C 22 39 22 33 25 28 C 27 25 31 24 34 25 L 41 32 L 46 27 L 39 20 C 41 17 45 16 49 18 C 54 20 56 26 54 31 C 52 33 51 35 50 36 Z"
+          fill="url(#wrenchGrad)"
+        />
+      </g>
+
+      {/* Brand Typography */}
+      <text x="104" y="38" fill="#FFFFFF" fontSize="29" fontWeight="900" fontFamily="system-ui, -apple-system, sans-serif" letterSpacing="1">
+        INSTANT
+      </text>
+
+      <text x="104" y="66" fill="#FF6B35" fontSize="27" fontWeight="800" fontFamily="system-ui, -apple-system, sans-serif" letterSpacing="1.5">
+        MECHANIC
+      </text>
+
+      <text x="104" y="83" fill="#91A7BB" fontSize="9.5" fontWeight="700" fontFamily="system-ui, -apple-system, sans-serif" letterSpacing="1.4">
+        SERVICE . ANYTIME . ANYWHERE
+      </text>
+    </svg>
+  );
+}
+
 // ─── Sort icon ────────────────────────────────────────────────────────────────
 type SortDir = "asc" | "desc";
 
@@ -1115,12 +1177,8 @@ export default function DashboardV2() {
     <div className="v2-shell">
       {/* ── Sidebar (desktop) ── */}
       <aside className="v2-sidebar">
-        <div className="v2-brand">
-          <img src="/logo.jpg" alt="Instant Mechanic Logo" className="v2-brand-mark" style={{ width: 36, height: 36, borderRadius: 9, objectFit: "cover" }} />
-          <div>
-            <strong>Instant Mechanic</strong>
-            <span>Operations</span>
-          </div>
+        <div className="v2-brand" style={{ padding: "8px 0 16px", borderBottom: "1px solid rgba(255,255,255,.1)" }}>
+          <BrandLogo />
         </div>
 
         <div className="v2-nav-label">WORKSPACE</div>
